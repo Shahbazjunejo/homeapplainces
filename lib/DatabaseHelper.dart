@@ -40,6 +40,7 @@ Future _onCreate(Database db, int version) async {
       CREATE TABLE  IF NOT EXISTS $table (
         $columnId INTEGER PRIMARY KEY,
         $columnName TEXT NOT NULL,
+        $Name TEXT NOT NULL,
         $columnPassword TEXT NOT NULL,
         $columnemail TEXT NOT NULL,
         $columncontact TEXT NOT NULL

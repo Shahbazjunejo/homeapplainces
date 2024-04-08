@@ -3,11 +3,18 @@ import 'package:flutter/material.dart';
 import 'DatabaseHelper.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+   SignupScreen({super.key});
 
-  @override
+
+  final TextEditingController username = TextEditingController();
+   final TextEditingController password= TextEditingController();
+   final TextEditingController fullname = TextEditingController();
+   final TextEditingController emailaddress = TextEditingController();
+   final TextEditingController phonenumber = TextEditingController();
+
+
+   @override
   Widget build(BuildContext context) {
-    TextEditingController? username,password,fullname,emailaddress,phonenumber = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -26,19 +33,41 @@ class SignupScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30,),
-         //   _buildTextField(hint: 'Username',username),
+            _buildTextField(hint: 'Username',controller: username),
             const SizedBox(height: 20,),
-            _buildTextField(hint: 'Password', obscureText: true),
+            _buildTextField(hint: 'Password', obscureText: true,controller: password),
             const SizedBox(height: 20,),
-            _buildTextField(hint: 'Full name'),
+            _buildTextField(hint: 'Full name',controller: fullname),
             const SizedBox(height: 20,),
-            _buildTextField(hint: 'Email address'),
+            _buildTextField(hint: 'Email address',controller: emailaddress),
             const SizedBox(height: 20,),
-            _buildTextField(hint: 'Phone number'),
+            _buildTextField(hint: 'Phone number',controller: phonenumber),
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                // Handle sign up logic
+                registerUser( username!.text,password!.text,fullname!.text,emailaddress!.text,phonenumber!.text);
+                username.clear();
+                password.clear();
+                fullname.clear();
+                emailaddress.clear();
+                phonenumber.clear();
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Sign up '),
+                      content: Text('Sign up Successfully'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue, // Background color

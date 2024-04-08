@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+import 'DatabaseHelper.dart';
 
+class LoginScreen extends StatelessWidget {
+   LoginScreen({super.key});
+
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password= TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +34,7 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             TextFormField(
+              controller: email,
               decoration: InputDecoration(
                 labelText: 'Email',
                 filled: true,
@@ -111,6 +116,34 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void loginUser(String username, String password,BuildContext context) async {
+    Map<String, dynamic>? user = await DatabaseHelper.instance.getUser(username);
+
+    if (user != null && user[DatabaseHelper.columnPassword] == password) {
+      // Login successful
+      Navigator.of(context).pushNamed('/HomeScreen',arguments: user);
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Login failed'),
+            content: Text('Wrong username or password'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+      print('Login failed');
+    }
   }
 }
 
