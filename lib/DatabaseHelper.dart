@@ -5,6 +5,8 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:sqflite/sqflite.dart';
 
+import 'RegisterUser.dart';
+
 class DatabaseHelper{
 static final _databaseName="tashfil";
 static final table="logintable";
@@ -47,12 +49,6 @@ Future _onCreate(Database db, int version) async {
       )
     ''');
 
-
-
-
-
-
-
 }
 
 Future<int> insertUser(Map<String, dynamic> row) async {
@@ -60,11 +56,42 @@ Future<int> insertUser(Map<String, dynamic> row) async {
   return await db?.insert(table, row)??0;
 }
 
-Future<Map<String, dynamic>?> getUser(String username) async {
+Future<Map<String, dynamic>?> getUser(String useremail) async {
   Database? db = await instance.database;
   List<Map<String, dynamic>> result = await db?.query(table,
-      where: '$columnName = ?', whereArgs: [username])??[];
+      where: '$columnemail = ?', whereArgs: [useremail])??[];
   return result.isNotEmpty ? result.first : null;
+}
+
+Future<Map<String, dynamic>?> deleteUser(String id) async {
+  Database? db = await instance.database;
+  await db?.delete(table,
+      where: '$columncontact = ?', whereArgs: [id])??[];
+
+}
+
+
+
+Future<void> updateLoginRecord(String username,String email, String contact) async {
+  Database? db = await instance.database;
+  await db?.update(
+      table,
+      {columnName: username, columncontact: contact, columnemail: email},
+      where: '$columncontact = ?',
+      whereArgs: [contact]
+  );
+}
+
+Future<List<UserData>> getallUser() async {
+  final Database? db = await database;
+  final List<Map<String, dynamic>>? maps = await db?.query('logintable');
+  return List.generate(maps!.length, (i) {
+    return  UserData(
+      name: maps[i]['username'] ?? '',
+      contact: maps[i]['Contact'] ?? '',
+      email: maps[i]['Email'] ?? '',
+    );
+  });
 }
 
 

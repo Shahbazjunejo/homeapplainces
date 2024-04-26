@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:homeappliances/AddUser.dart';
+import 'package:homeappliances/RegisterUser.dart';
+import 'package:homeappliances/ServiceProvider.dart';
 import 'package:homeappliances/Welcome%20Screen.dart';
 import 'HomeScreen.dart';
 import 'LoginScreen.dart';
@@ -24,6 +27,9 @@ class MyApp extends StatelessWidget {
         '/LoginScreen': (context) => LoginScreen(),
         '/SignupScreen': (context) => SignupScreen(),
         '/SearchScreen': (context) => SearchScreen(),
+        '/RegisterUser': (context) => RegisterUser(),
+        '/ServiceProvider': (context) => ServiceProvider(),
+        '/AddUser': (context) => AddUser(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

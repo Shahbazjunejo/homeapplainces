@@ -47,6 +47,7 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              controller: password,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Login',
@@ -79,7 +80,10 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('/HomeScreen');
+                if(email.text.isNotEmpty&&email.text=="admin"&&password.text.isNotEmpty&&password.text=="admin"){
+                  Navigator.of(context).pushNamed('/ServiceProvider');
+                }
+               loginUser(email.text, password.text, context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
@@ -118,9 +122,8 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void loginUser(String username, String password,BuildContext context) async {
-    Map<String, dynamic>? user = await DatabaseHelper.instance.getUser(username);
-
+  void loginUser(String useremail, String password,BuildContext context) async {
+    Map<String, dynamic>? user = await DatabaseHelper.instance.getUser(useremail);
     if (user != null && user[DatabaseHelper.columnPassword] == password) {
       // Login successful
       Navigator.of(context).pushNamed('/HomeScreen',arguments: user);
@@ -145,5 +148,7 @@ class LoginScreen extends StatelessWidget {
       print('Login failed');
     }
   }
+
+
 }
 
