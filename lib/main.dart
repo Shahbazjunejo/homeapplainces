@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeappliances/AddServiceProvider.dart';
 import 'package:homeappliances/AddUser.dart';
 import 'package:homeappliances/RegisterUser.dart';
 import 'package:homeappliances/ServiceProvider.dart';
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
         '/RegisterUser': (context) => RegisterUser(),
         '/ServiceProvider': (context) => ServiceProvider(),
         '/AddUser': (context) => AddUser(),
+        '/AddServiceProvider': (context) => AddServiceProvider(),
+
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

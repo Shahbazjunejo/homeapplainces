@@ -21,7 +21,7 @@ class _ServiceProviderState extends State<ServiceProvider> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Text("User and Servcie provider ",
+            const Text("User and Service provider ",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.normal,
@@ -70,6 +70,7 @@ class _ServiceProviderState extends State<ServiceProvider> {
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
+
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue, // Background color
@@ -85,25 +86,27 @@ class _ServiceProviderState extends State<ServiceProvider> {
               ),),
             ),
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
-            const Center(
-              child: Text(
-                "Already Have an Account?",
-                style: TextStyle(fontSize: 16, color: Colors.black),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/AddServiceProvider');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Background color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 14.0),
               ),
+              child: const Text('Add Service Provider', style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.normal,
+                color: Colors.white,
+              ),),
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/LoginScreen');
-                },
-                child: const Text(
-                  "Login",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.blue,
-                  ),
-                ))
+
+
           ],
         ),
       ),

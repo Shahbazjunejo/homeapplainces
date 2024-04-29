@@ -82,8 +82,9 @@ class LoginScreen extends StatelessWidget {
               onPressed: () {
                 if(email.text.isNotEmpty&&email.text=="admin"&&password.text.isNotEmpty&&password.text=="admin"){
                   Navigator.of(context).pushNamed('/ServiceProvider');
-                }
+                }else{
                loginUser(email.text, password.text, context);
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:homeappliances/ServiceProvider.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -10,6 +11,7 @@ import 'RegisterUser.dart';
 class DatabaseHelper{
 static final _databaseName="tashfil";
 static final table="logintable";
+static final serviceProvidertable="sericeProvider";
 static final _databaseVersion = 1;
 static final columnId = 'id';
 static final columnName = 'username';
@@ -17,6 +19,10 @@ static final Name = 'name';
 static final columnPassword = 'password';
 static final columnemail = 'Email';
 static final columncontact = 'Contact';
+static final serviceId = 'id';
+static final serviceName = 'servicename';
+static final serviceprovided='serviceprovided';
+static final servicearea='servicearea';
 
 DatabaseHelper._privateConstructor();
 static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -49,12 +55,31 @@ Future _onCreate(Database db, int version) async {
       )
     ''');
 
+
+  await db.execute('''
+      CREATE TABLE  IF NOT EXISTS $serviceProvidertable (
+       $columnId INTEGER PRIMARY KEY,
+        $columnName TEXT NOT NULL,
+        $columncontact TEXT NOT NULL,
+        $serviceName TEXT NOT NULL,
+        $serviceprovided TEXT NOT NULL,
+        $servicearea TEXT NOT NULL
+      )
+    ''');
+
 }
 
 Future<int> insertUser(Map<String, dynamic> row) async {
   Database? db = await instance.database;
   return await db?.insert(table, row)??0;
 }
+
+
+Future<int> insertserviceprovider(Map<String, dynamic> row) async {
+  Database? db = await instance.database;
+  return await db?.insert(serviceProvidertable, row)??0;
+}
+
 
 Future<Map<String, dynamic>?> getUser(String useremail) async {
   Database? db = await instance.database;
