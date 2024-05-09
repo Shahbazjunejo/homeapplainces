@@ -92,7 +92,6 @@ Future<Map<String, dynamic>?> deleteUser(String id) async {
   Database? db = await instance.database;
   await db?.delete(table,
       where: '$columncontact = ?', whereArgs: [id])??[];
-
 }
 
 

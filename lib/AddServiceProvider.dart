@@ -46,12 +46,10 @@ class AddServiceProviderstate extends State<AddServiceProvider> {
               ),
             ),
             const SizedBox(height: 30,),
-
-            _buildTextField(hint: 'name', obscureText: true,controller: username),
+            _buildTextField(hint: 'name',controller: username),
             const SizedBox(height: 20,),
             _buildTextField(hint: 'contact',controller: phonenumber),
             const SizedBox(height: 20,),
-
             const Text("Service Provider",
               style: TextStyle(
                 fontSize: 17,
@@ -171,7 +169,6 @@ class AddServiceProviderstate extends State<AddServiceProvider> {
 
                 String homeapplaicnces='Home Appliances';
                 String area='North';
-
                 if(dropDownitems==0){
 homeapplaicnces='Home Appliances';
                 }else if (dropDownitems==1){
@@ -183,8 +180,6 @@ homeapplaicnces='Home Appliances';
                 else if (dropDownitems==3){
                 homeapplaicnces='HVAC';
                 }
-
-
 
                 if( dropDownarea==0){
                   area='North';

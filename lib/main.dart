@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:homeappliances/AddServiceProvider.dart';
 import 'package:homeappliances/AddUser.dart';
+import 'package:homeappliances/PaymentScreen.dart';
 import 'package:homeappliances/RegisterUser.dart';
+import 'package:homeappliances/ServiceInformation.dart';
 import 'package:homeappliances/ServiceProvider.dart';
 import 'package:homeappliances/Welcome%20Screen.dart';
 import 'HomeScreen.dart';
@@ -32,7 +34,8 @@ class MyApp extends StatelessWidget {
         '/ServiceProvider': (context) => ServiceProvider(),
         '/AddUser': (context) => AddUser(),
         '/AddServiceProvider': (context) => AddServiceProvider(),
-
+        '/ServiceInformation': (context) => ServiceInformation(),
+        '/PaymentScreen': (context) => PaymentScreen(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
