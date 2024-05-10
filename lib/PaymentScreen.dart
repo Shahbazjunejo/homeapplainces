@@ -19,10 +19,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
     String price="0";
 
     if (args != null) {
-
        price = args['price'];
        _cvcController.text=price;
-
     }
     return Scaffold(
       appBar: AppBar(

@@ -76,16 +76,16 @@ class HomeScreen extends StatelessWidget {
             ),
             Container(
               height: 450,// Adjust height accordingly
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10, // The number of categories
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: _buildCategoryCard(),
-                  );
-                },
+              child:ListView(
+                // This next line does the trick.
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    _buildCategoryCard("House Revolution","room.png"),
+                    _buildCategoryCard("cleaning Revolution","floor.jpg"),
+                    _buildCategoryCard("cloth Revolution","clothone.png"),
+                  ],
               ),
+              //ScrollView(child: _buildCategoryCard("House Revolution","room.png")),
             ),
           ],
         ),
@@ -93,7 +93,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryCard() {
+  Widget _buildCategoryCard(String cateqory,String imagename) {
     // Placeholder for category card
     return Container(
         width: 300, // Adjust width accordingly
@@ -105,20 +105,20 @@ class HomeScreen extends StatelessWidget {
           children: [
             Container(
               height: 300,
-              decoration: const BoxDecoration(
+              decoration:BoxDecoration(
                 color: Colors.white,
                 image: DecorationImage(
-                  image: AssetImage("assets/images/room.png"),
+                  image: AssetImage("assets/images/$imagename"),
                   fit: BoxFit.fill,
                 ),
               ),
             ),
-            const SizedBox(
+              SizedBox(
               height: 100,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("House Renovation", style: TextStyle(
+                  Text(cateqory, style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.normal
                   ),)
